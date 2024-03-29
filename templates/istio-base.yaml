@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istio-base
+  namespace: argocd
+spec:
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: {{ .Values.istio.namespace }}
+  source:
+    repoURL: https://istio-release.storage.googleapis.com/charts
+    path: istio
+    chart: base
+    targetRevision: {{ .Values.istio.version }}
