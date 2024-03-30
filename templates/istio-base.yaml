@@ -12,7 +12,7 @@ spec:
     syncOptions:
       - CreateNamespace=true
   destination:
-    server: {{ .Values.spec.destination.server }}
+    server: {{ .Values.argocd.destination.server }}
     namespace: {{ .Values.istio.namespace }}
   source:
     repoURL: https://istio-release.storage.googleapis.com/charts
